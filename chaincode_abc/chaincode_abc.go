@@ -40,8 +40,11 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface, function string
 	var err error
 
 	var Nargs = len(args)
-	if Nargs < 4 || Nargs%2 != 0 {
+	if Nargs < 4 {
 		return nil, errors.New("Incorrect number of arguments. Expecting at least 4")
+	}
+	if Nargs%2 != 0 {
+		return nil, errors.New("Incorrect number of arguments. Expecting couples")
 	}
 
 	// Initialize the chaincode
